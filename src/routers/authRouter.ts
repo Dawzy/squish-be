@@ -5,7 +5,7 @@ import {
   login,
   updateUser,
   deleteUser
-} from "../controllers/authController.js";
+} from "../controllers/authControllers.js";
 
 const router = Router();
 

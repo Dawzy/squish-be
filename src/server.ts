@@ -3,7 +3,9 @@ import express, { Express } from "express";
 import dotenv from "dotenv";
 import morgan from "morgan";
 import errorHandler from "./middleware/error.js";
-import authRouter from "./routes/authRouter.js"
+import authenticate from "./middleware/auth.js";
+import authRouter from "./routers/authRouter.js";
+import orgRouter from "./routers/orgRouter.js";
 
 // Initialize env variables
 dotenv.config();
@@ -17,6 +19,7 @@ if (process.env.NODE_ENV === "dev") app.use(morgan("dev"));
 
 // Mount routers
 app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/org", authenticate, orgRouter);
 
 // Mount middleware
 app.use(errorHandler);
